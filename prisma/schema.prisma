@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  image     String?  // Optionnel, si l'utilisateur n'a pas de photo au départ
+  createdAt DateTime @default(now())
+
+  @@map("users") // Permet de garder la table en minuscule dans la base de données
+}
+
+
+model Visiteur{
+  id    Int  @id @default(autoincrement())
+  nom   String   
+  nbrjours  Int 
+  tarifjournalier Decimal
+}
